@@ -1,0 +1,18 @@
+cd /Users/nik/Pictures/LIFESTYLE/ПРОЕКТЫ/ПОРТФОЛИО/Сайт/portfolio
+git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/electiomagna/portfolio.git
+git push -u origin main
+
+
+
+
+cd ~/Desktop/portfolio
+git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/ТВОЙ-USERNAME/portfolio.git
+git push -u origin main
