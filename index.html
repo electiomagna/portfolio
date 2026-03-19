@@ -23,7 +23,7 @@
     <div class="hero-content">
       <h1>Коля</h1>
       <p>ФОТОГРАФ / ВИДЕОМЕЙКЕР</p>
-      <a href="#portfolio" class="btn">Смотреть работы</a>
+      <a href="#portfolio" class="btn" id="workBtn">Смотреть работы</a>
     </div>
   </section>
   
@@ -88,4 +88,10 @@
 
 </body>
 </html>
-<!-- test -->
+<script>
+  const btn = document.getElementById('workBtn');
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelector('#portfolio').scrollIntoView({ behavior: 'smooth' });
+  });
+</script>
