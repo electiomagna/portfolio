@@ -83,36 +83,32 @@ nav a {
 }
 /* PORTFOLIO */
 .portfolio {
-  padding: 100px 50px;
-  text-align: center;
+  padding: 0;
 }
 
-.portfolio h2 {
-  margin-bottom: 40px;
-  font-size: 32px;
-}
-
-/* сетка */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 0;
+}
+
+.item {
+  aspect-ratio: 1 / 1;
+  background: #1a1a1a;
+  border: 1px solid #111;
 }
 
 .item img {
   width: 100%;
+  height: 100%;
   display: block;
-}
-.item {
-  overflow: hidden;
-}
-
-.item img {
+  object-fit: cover;
   transition: transform 0.5s;
 }
 
 .item:hover img {
-  transform: scale(1.1);
+  transform: scale(1.04);
 }
 /* ABOUT */
 .about {
@@ -199,7 +195,8 @@ html {
 }
 @media (max-width: 768px) {
   .gallery {
-    grid-template-columns: 1fr; /* было 2 → стало 1 */
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
   }
 }
 @media (max-width: 768px) {
