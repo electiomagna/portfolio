@@ -28,7 +28,7 @@
   </section>
   
 <!-- PORTFOLIO -->
- <section class="portfolio">
+ <section id="portfolio" class="portfolio">
   <h2>Мои работы</h2>
   <div class="gallery">
     <div class="item">
@@ -88,10 +88,3 @@
 
 </body>
 </html>
-<script>
-  const btn = document.getElementById('workBtn');
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    document.querySelector('#portfolio').scrollIntoView({ behavior: 'smooth' });
-  });
-</script>
