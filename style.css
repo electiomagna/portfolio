@@ -176,7 +176,7 @@ nav a {
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /* плавная прокрутка */
 }
   
 @media (max-width: 768px) {
