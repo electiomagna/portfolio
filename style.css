@@ -35,7 +35,7 @@ img {
 .site-header,
 .page,
 .site-footer {
-  width: min(100%, 2520px);
+  width: min(100%, 1520px);
   margin: 0 auto;
 }
 
