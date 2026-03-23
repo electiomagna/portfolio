@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Climbing Documentary</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="project-page">
+  <!-- Шапка страницы проекта: возврат к главной и навигация по проекту. -->
+  <header class="site-header">
+    <a class="brand" href="index.html">nik volkov</a>
+    <nav class="site-nav" aria-label="Навигация страницы проекта">
+      <a href="#motion">motion</a>
+      <a href="#gallery">gallery</a>
+      <a href="#about-project">about</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </header>
+
+  <!-- Страница проекта повторяет блок Portfolio 2 из макета. -->
+  <main class="page">
+    <!-- Основной featured-блок проекта с крупным кадром и кнопкой play. -->
+    <section id="motion" class="project-hero">
+      <p class="section-label">motion</p>
+
+      <div class="project-hero__media">
+        <img src="images/hero.jpg" alt="Кадр проекта Climbing Documentary">
+        <button class="play-button" type="button" aria-label="Play showreel">
+          <span class="play-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <div id="about-project" class="project-hero__copy">
+        <div class="project-hero__title">
+          <p class="eyebrow">Subtitle several words</p>
+          <h1>Climbing Documentary</h1>
+        </div>
+
+        <div class="project-hero__text">
+          <p>
+            The film was shot over the course of a few weeks in the Dolomites,
+            Italy, following a small team of climbers exploring lesser-known
+            routes. The project focused on quiet moments as much as the climbs
+            themselves: early mornings, long approaches, and tired post-wall
+            conversations.
+          </p>
+          <p>
+            Nikolai worked as a camera operator, documenting both the movement
+            on the rock and the crew around it. The team consisted of two
+            climbers and a small support crew, keeping things simple and
+            flexible. Most of the filming was done on lightweight gear, often
+            carried during the climbs, allowing for a more intimate and
+            immediate perspective.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Нижняя сетка-заполнитель повторяет серый grid из Portfolio 2. -->
+    <section id="gallery" class="placeholder-grid placeholder-grid--project" aria-label="Галерея проекта">
+      <div class="placeholder-card"></div>
+      <div class="placeholder-card"></div>
+      <div class="placeholder-card"></div>
+      <div class="placeholder-card"></div>
+      <div class="placeholder-card"></div>
+      <div class="placeholder-card"></div>
+      <div class="placeholder-card"></div>
+      <div class="placeholder-card"></div>
+      <div class="placeholder-card"></div>
+    </section>
+  </main>
+
+  <!-- Футер с контактной информацией. -->
+  <footer id="contact" class="site-footer">
+    <a href="mailto:your@email.com">your@email.com</a>
+    <a href="#">instagram</a>
+    <a href="#">telegram</a>
+  </footer>
+</body>
+</html>

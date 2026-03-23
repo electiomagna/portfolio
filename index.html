@@ -6,92 +6,147 @@
   <title>Nikolai Volkov Portfolio</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <!-- Верхняя шапка сайта: логотип слева и навигация по основным секциям справа. -->
+<body class="home-page">
+  <!--
+    Шапка главной страницы.
+    Здесь находится имя автора, которое работает как ссылка на текущую страницу,
+    и простая навигация по основным секциям главной.
+  -->
   <header class="site-header">
-    <a class="brand" href="#top">NIK VOLKOV</a>
+    <a class="brand" href="index.html">nik volkov</a>
     <nav class="site-nav" aria-label="Основная навигация">
-      <a href="#motion">motion</a>
-      <a href="#gallery">gallery</a>
+      <a href="#projects">projects</a>
       <a href="#about">about</a>
       <a href="#contact">contact</a>
     </nav>
   </header>
 
-  <!-- Основной контент страницы: обложка проекта и сетка с работами. -->
-  <main id="top" class="page">
-    <!-- Первый экран проекта: крупный кадр, кнопка воспроизведения и описание работы. -->
-    <section id="motion" class="hero">
-      <!-- Медиа-блок с главным изображением проекта и декоративной кнопкой play. -->
-      <div class="hero-media">
-        <img src="images/hero.jpg" alt="Кадр проекта Climbing Documentary">
-        <button class="play-button" type="button" aria-label="Play showreel">
-          <span class="play-icon" aria-hidden="true"></span>
-        </button>
+  <!--
+    Основной контент страницы.
+    Эта страница повторяет композицию Portfolio 1 из макета Figma:
+    большой вводный кадр, список проектов, блок about и нижняя сетка.
+  -->
+  <main class="page">
+    <!--
+      Верхний hero-блок.
+      Это главный визуальный акцент страницы: большое изображение задаёт настроение
+      и сразу показывает стиль автора без дополнительного текста.
+    -->
+    <section class="home-hero" aria-label="Главный кадр">
+      <img src="images/figma-home-hero.png" alt="Съёмка в горах">
+    </section>
+
+    <!--
+      Секция с проектами.
+      Каждая карточка здесь играет роль превью проекта и ведёт на отдельную страницу project.html,
+      которая соответствует второму экрану Portfolio 2 в макете.
+    -->
+    <section id="projects" class="project-list" aria-label="Список проектов">
+      <!-- Небольшая служебная подпись над списком карточек. -->
+      <p class="section-label">selected projects</p>
+
+      <!--
+        Карточка проекта №1.
+        Внутри: фоновое изображение, короткий технический номер проекта и его название.
+      -->
+      <a class="project-card" href="project.html">
+        <img src="images/figma-project-1.jpg" alt="Climbing Documentary">
+        <span class="project-card__meta">project 01</span>
+        <span class="project-card__title">Climbing Documentary</span>
+      </a>
+
+      <!-- Карточка проекта №2. По структуре такая же, отличается только контентом. -->
+      <a class="project-card" href="project.html">
+        <img src="images/figma-project-2.jpg" alt="Coastal Bouldering">
+        <span class="project-card__meta">project 02</span>
+        <span class="project-card__title">Coastal Bouldering</span>
+      </a>
+
+      <!-- Карточка проекта №3. -->
+      <a class="project-card" href="project.html">
+        <img src="images/figma-project-3.jpg" alt="Expedition Notes">
+        <span class="project-card__meta">project 03</span>
+        <span class="project-card__title">Expedition Notes</span>
+      </a>
+
+      <!-- Карточка проекта №4. -->
+      <a class="project-card" href="project.html">
+        <img src="images/figma-project-4.jpg" alt="Sparks and Steel">
+        <span class="project-card__meta">project 04</span>
+        <span class="project-card__title">Sparks and Steel</span>
+      </a>
+    </section>
+
+    <!--
+      Блок about.
+      Здесь слева стоит фотография автора, а справа короткое текстовое описание:
+      чем он занимается, какой у него визуальный подход и как можно с ним связаться.
+    -->
+    <section id="about" class="about-preview">
+      <!-- Левая колонка about-блока: портрет автора. -->
+      <div class="about-preview__media">
+        <img src="images/figma-about.png" alt="Портрет Николая Волкова">
       </div>
 
-      <!-- Текстовый блок первого экрана: название проекта и подробное описание. -->
-      <div class="hero-copy">
-        <!-- Левая колонка: короткая подпись и заголовок проекта. -->
-        <div class="hero-title">
-          <p class="eyebrow">Subtitle several words</p>
-          <h1>Climbing Documentary</h1>
-        </div>
+      <!-- Правая колонка about-блока: подпись, заголовок, описание и соцссылки. -->
+      <div class="about-preview__copy">
+        <!-- Маленькая поясняющая подпись над текстом. -->
+        <p class="section-label">about the author</p>
 
-        <!-- Правая колонка: описание съёмочного процесса и роли Николая в проекте. -->
-        <div id="about" class="hero-text">
-          <p>
-            The film was shot over the course of a few weeks in the Dolomites,
-            Italy, following a small team of climbers exploring lesser-known
-            routes. The project focused on quiet moments as much as the climbs
-            themselves: early mornings, long approaches, and tired post-wall
-            conversations.
-          </p>
-          <p>
-            Nikolai worked as a camera operator, documenting both the movement
-            on the rock and the crew around it. The team consisted of two
-            climbers and a small support crew, keeping things simple and
-            flexible. Most of the filming was done on lightweight gear, often
-            carried during the climbs, allowing for a more intimate and
-            immediate perspective.
-          </p>
+        <!-- Основной заголовок блока about. -->
+        <h1>Visual storytelling through movement, texture and real moments.</h1>
+
+        <!-- Первый абзац: коротко объясняет специализацию автора. -->
+        <p>
+          Nikolai is a photographer and videomaker working with outdoor stories,
+          brands and personal portraits. His images balance raw landscapes,
+          documentary intimacy and clean visual rhythm.
+        </p>
+
+        <!-- Второй абзац: раскрывает авторский подход и визуальный характер работ. -->
+        <p>
+          Across commercial and personal projects, he focuses on natural light,
+          physical presence and details that make a scene feel lived-in rather
+          than staged.
+        </p>
+
+        <!--
+          Социальные ссылки.
+          Сейчас это компактные кнопки-заглушки, которые можно позже заменить
+          на реальные ссылки Instagram, Telegram и почты.
+        -->
+        <div class="social-links" aria-label="Социальные ссылки">
+          <a href="#" aria-label="Instagram">ig</a>
+          <a href="#" aria-label="Telegram">tg</a>
+          <a href="mailto:your@email.com" aria-label="Email">mail</a>
         </div>
       </div>
     </section>
 
-    <!-- Галерея работ: сетка карточек с фотографиями портфолио. -->
-    <section id="gallery" class="gallery-section" aria-label="Portfolio gallery">
-      <article class="gallery-card">
-        <img src="photo/1.jpg" alt="Работа 1">
-      </article>
-      <article class="gallery-card">
-        <img src="photo/2.jpg" alt="Работа 2">
-      </article>
-      <article class="gallery-card">
-        <img src="photo/3.jpg" alt="Работа 3">
-      </article>
-      <article class="gallery-card">
-        <img src="photo/4.jpg" alt="Работа 4">
-      </article>
-      <article class="gallery-card">
-        <img src="photo/5.jpg" alt="Работа 5">
-      </article>
-      <article class="gallery-card">
-        <img src="photo/6.jpg" alt="Работа 6">
-      </article>
-      <article class="gallery-card">
-        <img src="photo/7.jpg" alt="Работа 7">
-      </article>
-      <article class="gallery-card">
-        <img src="photo/8.jpg" alt="Работа 8">
-      </article>
-      <article class="gallery-card">
-        <img src="photo/9.jpg" alt="Работа 9">
-      </article>
+    <!--
+      Нижняя серая сетка-плейсхолдер.
+      Она повторяет декоративный блок из макета Portfolio 1.
+      Сейчас внутри пустые ячейки, но позже сюда можно поставить реальные работы,
+      превью кейсов или любую дополнительную галерею.
+    -->
+    <section class="placeholder-grid placeholder-grid--home" aria-label="Галерея-заглушка">
+      <!-- Одна ячейка-заполнитель. Все девять блоков одинаковые и нужны для визуального ритма. -->
+      <div class="placeholder-card"></div>
+      <div class="placeholder-card"></div>
+      <div class="placeholder-card"></div>
+      <div class="placeholder-card"></div>
+      <div class="placeholder-card"></div>
+      <div class="placeholder-card"></div>
+      <div class="placeholder-card"></div>
+      <div class="placeholder-card"></div>
+      <div class="placeholder-card"></div>
     </section>
   </main>
 
-  <!-- Нижняя часть страницы: контакты и ссылки для связи. -->
+  <!--
+    Футер страницы.
+    Внизу дублируются контакты, чтобы до них было легко добраться в конце страницы.
+  -->
   <footer id="contact" class="site-footer">
     <a href="mailto:your@email.com">your@email.com</a>
     <a href="#">instagram</a>
