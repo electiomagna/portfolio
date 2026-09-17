@@ -369,7 +369,7 @@ video {
 
 /* Основной заголовок на главной. */
 .about-preview__copy h1 {
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.12;
   font-weight: 700;
   font-style: italic;
@@ -377,7 +377,7 @@ video {
 
 /* Обычный текст на главной. */
 .about-preview__copy p {
-  font-size: 10px;
+  font-size: 13px;
   line-height: 1.45;
   color: rgba(255, 255, 255, 0.8);
 }
