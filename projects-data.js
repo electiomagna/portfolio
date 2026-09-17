@@ -33,7 +33,7 @@ const portfolioProjects = [
     title: "Burgers",
     meta: "Improvisation",
     preview: "images/Burgers/3.jpg",
-    video: "video/Burgers/Бургеры на Гриле v1.mp5",
+    video: "https://ia601905.us.archive.org/35/items/burgers-portfolio/%D0%91%D1%83%D1%80%D0%B3%D0%B5%D1%80%D1%8B%20%D0%BD%D0%B0%20%D0%93%D1%80%D0%B8%D0%BB%D0%B5%20v1.mp4",
     description:
       `Короткая визуальная история про приготовление бургеров на гриле. 
       Локация - отдаленное поле. Начавшийся град нам не помешал отлично провести время и вдоволь наестся вкусными бургерами.`,
