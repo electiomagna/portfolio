@@ -4,7 +4,7 @@ const portfolioProjects = [
     title: "Senso Unico 9a",
     meta: "Severnaya Stena",
     preview: "images/senso unico/0.jpg",
-    video: "video/senso unico/Senso Unico - portfolio.mp5",
+    video: "https://ia601607.us.archive.org/2/items/senso-unico-web/Senso%20Unico%20Web.mp4",
     description:
       `Проект посвящен первопроходу Алексея Петько трассы Senso Unico, которая находится в нацпарке Лиетлахти. 
       Трасса категории 9a. Фильм сочетает в себе элементы спортивной драмы, документальной съемки и красивой художественной хроники в стиле National Geographic. 
@@ -33,7 +33,7 @@ const portfolioProjects = [
     title: "Burgers",
     meta: "Improvisation",
     preview: "images/Burgers/3.jpg",
-    video: "https://ia601905.us.archive.org/35/items/burgers-portfolio/%D0%91%D1%83%D1%80%D0%B3%D0%B5%D1%80%D1%8B%20%D0%BD%D0%B0%20%D0%93%D1%80%D0%B8%D0%BB%D0%B5%20v1.mp4",
+    video: "https://ia801009.us.archive.org/21/items/burgers-web/Burgers%20Web.mp4",
     description:
       `Короткая визуальная история про приготовление бургеров на гриле. 
       Локация - отдаленное поле. Начавшийся град нам не помешал отлично провести время и вдоволь наестся вкусными бургерами.`,
@@ -56,7 +56,7 @@ const portfolioProjects = [
     title: "Chatarsis 8c+",
     meta: "Triangular lake",
     preview: "images/chatarsis/0.jpg",
-    video: "video/chatarsis/catarsis5 - 4K.mov5",
+    video: "https://ia801907.us.archive.org/23/items/chatarsis-web/Chatarsis%20Web.mp4",
     description:
       `Скалолазный проект на Треугольном озере: Chatarsis 8c+ - культовая трасса Треугольного озера. 
       Ее проходит Владислав Шевченко - один из сильнейших спортсменов страны.`,
@@ -77,7 +77,7 @@ const portfolioProjects = [
     title: "El Capitan 5x5",
     meta: "El Capitan climbing gym",
     preview: "images/elcap_1/0.jpg",
-    video: "video/elcap_1/elcap final7.mp5",
+    video: "https://ia601008.us.archive.org/19/items/el-cap-web/ElCap%20Web.mp4",
     description:
       `Проект для скалодрома El Capitan: энергичная съемка соревнований по болдерингу. 
       Ребята из ElCapitan'а ежегодно проводят фестивали, этот - в честь дня рождения скалодрому - 7 лет. 
