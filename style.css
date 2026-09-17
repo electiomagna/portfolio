@@ -10,12 +10,17 @@ html {
   scroll-behavior: smooth;
 }
 
+:root {
+  --header-height: 90px;
+}
+
 /* Общий фон и базовая типографика, близкие к тёмному макету из Figma. */
 body {
   min-height: 100vh;
-  background: #1e1e1e;
+  padding-top: var(--header-height);
+  background: #1b1b1b;
   color: #f4f4f4;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Koulen", Arial, Helvetica, sans-serif;
 }
 
 /* Ссылки по умолчанию не меняют цвет относительно окружения. */
@@ -45,35 +50,79 @@ video {
   margin: 0;
 }
 
-/* Верхняя шапка с компактной навигацией. */
+/* Фиксированная светлая шапка в стиле референса. */
 .site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 40px 24px 0; /* отступ сверху страницы - 1 */
+  min-height: var(--header-height);
+  padding: 0 56px;
+  background: #f7f7f4;
+  color: #111111;
+  font-family: "Hey November", Arial, Helvetica, sans-serif;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
 }
 
 /* Мелкая служебная типографика, как на макете. */
 .brand,
 .site-nav a,
 .section-label,
-.site-footer a {
+.site-footer a,
+.footer-copy {
   font-size: 10px;
   line-height: 1;
   letter-spacing: 0.08em;
   text-transform: lowercase;
 }
 
-/* Имя автора немного заметнее остальных подписей. */
+/* Имя автора на главное вверху слева. */
+.brand,
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 14px;
+  font-family: "Hey November", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  font-style: normal;
+  text-transform: lowercase;
+  margin-left: 0;
+}
+
 .brand {
-  font-weight: 700;
+  color: #2f2f2f;
+}
+
+.brand::before,
+.footer-brand::before {
+  content: "";
+  width: 34px;
+  height: 44px;
+  border: 4px solid currentColor;
+  background:
+    linear-gradient(currentColor, currentColor) 50% 34% / 100% 4px no-repeat,
+    linear-gradient(currentColor, currentColor) 50% 66% / 100% 4px no-repeat;
 }
 
 /* Горизонтальный ряд ссылок в шапке. */
 .site-nav {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 58px;
+}
+
+.site-nav a {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase; /* шрифт заглавными */
+  color: #0f0f0f;
 }
 
 /* 
@@ -82,7 +131,7 @@ video {
   содержимое никогда не будет касаться самого края экрана.
 */
 .page {
-  padding: 40px 24px 72px; /* отступ сверху страницы - 2 */
+  padding: 0 0 72px;
 }
 
 /* Служебные подписи разделов. */
@@ -106,9 +155,11 @@ video {
   своего родителя `.home-page .page`. Поэтому если родитель узкий, то и hero тоже узкий.
 */
 .home-hero {
+  position: relative;
+  z-index: 2;
   aspect-ratio: 1.68 / 1;
   overflow: hidden;
-  background: #464646;
+  background: #1b1b1b;
 }
 
 /* 
@@ -122,55 +173,158 @@ video {
   object-fit: cover;
 }
 
-/* Секция с карточками проектов. */
+/* Секция с проектами в формате scroll-списка со sticky-кадрами. */
 .project-list {
-  margin-top: 80px; /*отступ перед проектами*/
+  --project-text-offset: 200px;
+  --project-side-offset: clamp(110px, 18vw, 340px);
+  position: relative;
+  z-index: 1;
+  min-height: auto;
+  margin-top: 0px; /* отступ между hero и project*/
+  padding: var(--project-text-offset) 0 152px var(--project-side-offset);
+  overflow: visible;
+  background: #1b1b1b;
+  isolation: isolate;
+}
+
+.project-backdrops {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - var(--header-height));
+  margin-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.project-backdrop {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  filter: brightness(0.68);
+  pointer-events: none;
+  transition: opacity 650ms ease;
+}
+
+.project-backdrop.is-active {
+  opacity: 0;
+}
+
+.project-list:has(> .project-card:nth-of-type(1):hover) .project-backdrop:nth-child(1),
+.project-list:has(> .project-card:nth-of-type(1):focus-visible) .project-backdrop:nth-child(1),
+.project-list:has(> .project-card:nth-of-type(2):hover) .project-backdrop:nth-child(2),
+.project-list:has(> .project-card:nth-of-type(2):focus-visible) .project-backdrop:nth-child(2),
+.project-list:has(> .project-card:nth-of-type(3):hover) .project-backdrop:nth-child(3),
+.project-list:has(> .project-card:nth-of-type(3):focus-visible) .project-backdrop:nth-child(3),
+.project-list:has(> .project-card:nth-of-type(4):hover) .project-backdrop:nth-child(4),
+.project-list:has(> .project-card:nth-of-type(4):focus-visible) .project-backdrop:nth-child(4) {
+  opacity: 1;
+}
+
+.project-list > .section-label {
+  position: relative;
+  margin-top: 54vh;
+  z-index: 2;
 }
 
 /* 
-  Карточка проекта в списке.
-  Она также занимает всю доступную ширину родителя `.project-list`,
-  но эта ширина снова ограничена контейнером `.home-page .page`.
+  Проект в списке.
+  Сам текст остаётся кликабельным, а изображение меняется в sticky-слое по скроллу.
 */
 .project-card {
   position: relative;
   display: block;
-  aspect-ratio: 2.42 / 0.5;
-  overflow: hidden;
-  background: #4d4d4d;
+  width: 100vw;
+  margin-left: calc(-1 * var(--project-side-offset));
+  padding: 18px 0 150px var(--project-side-offset);
+  overflow: visible;
+  background: transparent;
 }
 
-/* Расстояние между карточками повторяет плотный ритм макета. */
-.project-card + .project-card {
-  margin-top: 8px;
-}
-
-/* Кадр проекта слегка затемняется, чтобы подписи читались поверх. */
-.project-card img {
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.84);
-}
-
-/* Небольшая служебная подпись в карточке. */
-.project-card__meta {
+.project-card::before {
+  content: "";
   position: absolute;
-  left: 14px;
-  bottom: 30px;
-  font-size: 9px;
+  inset: 0 0 -180px;
+  z-index: 1;
+}
+
+/* Расстояние между строками списка повторяет спокойный ритм референса. */
+.project-card + .project-card {
+  margin-top: 0;
+}
+
+/* Изображения внутри ссылок остаются в разметке, но фон теперь управляется sticky-слоем. */
+.project-card img {
+  display: none;
+}
+
+/* Небольшая служебная подпись над названием проекта. */
+.project-card__meta {
+  position: relative;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 15px;
   letter-spacing: 0.08em;
   text-transform: lowercase;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.76);
+  transition: color 220ms ease, opacity 220ms ease;
+  z-index: 2;
 }
 
-/* Название проекта на карточке. */
+/* Название проекта крупнее и смещено правее, как в референсе. */
 .project-card__title {
-  position: absolute;
-  left: 14px;
-  bottom: 12px;
-  font-size: 15px;
+  position: relative;
+  display: inline-block;
+  font-size: clamp(28px, 2.6vw, 55px);
   line-height: 1.05;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.78);
+  transition: color 220ms ease, opacity 220ms ease, font-weight 220ms ease;
+  z-index: 2;
+}
+
+.project-card__title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 260ms ease;
+}
+
+.project-card:hover .project-card__title,
+.project-card:focus-visible .project-card__title {
+  color: #ffffff;
+}
+
+.project-list:has(> .project-card.is-active) .project-card:not(.is-active) .project-card__meta,
+.project-list:has(> .project-card.is-active) .project-card:not(.is-active) .project-card__title {
+  opacity: 0.38;
+}
+
+.project-card.is-active .project-card__meta,
+.project-card.is-active .project-card__title {
+  opacity: 1;
+  color: #ffffff;
+}
+
+.project-card.is-active .project-card__title {
   font-weight: 700;
+}
+
+.project-card:hover .project-card__title::after,
+.project-card:focus-visible .project-card__title::after {
+  transform: scaleX(1);
 }
 
 /* 
@@ -183,12 +337,12 @@ video {
   margin-top: 48px; /* отступ сверху */
   display: grid;
   grid-template-columns: 542px minmax(0, 1fr);
-  gap: 18px;  /* отступ справа от фото */
-  align-items: start;
+  gap: 40px;  /* отступ справа от фото */
+  align-items: center;
   padding-top: 180px;
   padding-bottom: 180px;
-  padding-left: 200px;
-  padding-right: 200px;
+  padding-left: 100px;
+  padding-right: 50px;
 }
 
 /* Контейнер с портретом автора. */
@@ -210,27 +364,25 @@ video {
 /* Правая колонка текста about. */
 .about-preview__copy {
   display: grid;
-  gap: 8px;
+  gap: 20px;
 }
 
 /* Основной заголовок на главной. */
-.about-preview__copy h1,
-.project-hero__title h1 {
-  font-size: 18px;
+.about-preview__copy h1 {
+  font-size: 11px;
   line-height: 1.12;
   font-weight: 700;
+  font-style: italic;
 }
 
-/* Обычный текст на главной и на странице проекта. */
-.about-preview__copy p,
-.project-hero__text p {
+/* Обычный текст на главной. */
+.about-preview__copy p {
   font-size: 10px;
   line-height: 1.45;
   color: rgba(255, 255, 255, 0.8);
 }
 
 /* Отступ между соседними абзацами. */
-.project-hero__text p + p,
 .about-preview__copy p + p {
   margin-top: 12px;
 }
@@ -282,87 +434,179 @@ video {
   object-fit: cover;
 }
 
-/* 
-  Ограничение для второй страницы проекта.
-  Здесь контент может быть шире, чем на главной, но всё равно не бесконечно широкий:
-  максимум 1120 пикселей.
-*/
+/* Вторая страница проекта: вертикальная композиция по центру. */
 .project-page .page {
-  max-width: 1120px;
+  padding-bottom: 0;
 }
 
-/* Ведущий блок проекта на второй странице. */
-.project-hero {
+.project-detail {
   display: grid;
+  justify-items: center;
+  padding: 92px 24px 0;
 }
 
-/* Широкий hero-кадр проекта. */
-.project-hero__media {
-  position: relative;
-  aspect-ratio: 1.54 / 1;
-  overflow: hidden;
+.project-detail__title {
+  margin-bottom: 56px;
+  font-size: clamp(42px, 6vw, 112px);
+  line-height: 1;
+  font-weight: 400;
+  text-align: center;
+}
+
+.project-detail__video {
+  width: min(100%, 980px);
   background: #4d4d4d;
 }
 
-/* Кадр проекта занимает весь контейнер. */
-.project-hero__media img {
-  height: 100%;
+.project-detail__video--wide {
+  aspect-ratio: 16 / 9;
+}
+
+.project-detail__text {
+  width: min(100%, 720px);
+  margin: 56px auto;
+  text-align: justify;
+}
+
+.project-detail__text p {
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.project-detail__video--vertical {
+  width: min(100%, 420px);
+  aspect-ratio: 9 / 16;
+}
+
+.project-gallery {
+  display: grid;
+  gap: 0;
+  width: 100vw;
+}
+
+.project-page .project-gallery {
+  margin-bottom: 0;
+}
+
+.project-gallery__image {
+  width: 100%;
+  height: auto;
+}
+
+.project-gallery__item {
+  min-height: 72vh;
+  background: #5f5f5f;
+}
+
+.related-projects {
+  width: auto;
+  margin: 0 56px;
+  padding: 96px 0 110px;
+}
+
+.related-projects__label {
+  margin-bottom: 32px;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.54);
+}
+
+.related-projects__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.related-project-card {
+  display: grid;
+  gap: 14px;
+}
+
+.related-project-card img {
+  aspect-ratio: 1.52 / 1;
   object-fit: cover;
+  background: #4d4d4d;
+  filter: brightness(0.9);
+  transition: filter 220ms ease;
 }
 
-/* Кнопка play поверх кадра. */
-.play-button {
-  position: absolute;
-  inset: 50% auto auto 50%;
-  transform: translate(-50%, -50%);
-  width: 58px;
-  height: 58px;
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.32);
-  display: grid;
-  place-items: center;
-  cursor: pointer;
+.related-project-card:hover img,
+.related-project-card:focus-visible img {
+  filter: brightness(1);
 }
 
-/* Иконка play рисуется CSS-границами. */
-.play-icon {
-  width: 0;
-  height: 0;
-  margin-left: 4px;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-left: 15px solid #fff;
+.related-project-card__meta {
+  margin-top: 8px;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.54);
 }
 
-/* Текстовый блок под изображением на странице проекта. */
-.project-hero__copy {
-  margin-top: 18px;
-  display: grid;
-  grid-template-columns: minmax(190px, 0.7fr) minmax(260px, 1fr);
-  gap: 28px;
-}
-
-/* Мелкая подпись над названием проекта. */
-.eyebrow {
-  margin-bottom: 6px;
-  font-size: 9px;
-  line-height: 1.3;
-  color: rgba(255, 255, 255, 0.62);
-}
-
-/* Нижняя сетка на странице проекта повторяет правый экран из макета. */
-.placeholder-grid--project {
-  margin-top: 78px;
+.related-project-card__title {
+  font-size: clamp(24px, 2.1vw, 40px);
+  line-height: 1;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* Футер с контактами. */
 .site-footer {
-  padding: 0 24px 28px;
-  display: flex;
-  gap: 18px;
-  justify-content: flex-start;
+  position: relative;
+  z-index: 2;
+  width: auto;
+  margin: 0 56px;
+  padding: 56px 0 58px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) auto minmax(220px, 1fr);
+  align-items: center;
+  gap: 32px;
   color: rgba(255, 255, 255, 0.72);
+}
+
+.site-footer .footer-brand {
+  justify-self: start;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.footer-links a {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible {
+  color: #ffffff;
+}
+
+.footer-links svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+.footer-copy {
+  justify-self: end;
+  color: rgba(255, 255, 255, 0.62);
 }
 
 /* Планшетная адаптация: делаем главную и project более вертикальными. */
@@ -373,28 +617,75 @@ video {
     margin-left: auto;
   }
 
-  .about-preview,
-  .project-hero__copy {
+  .about-preview {
     grid-template-columns: 1fr;
     width: 100%;
+  }
+
+  .project-detail {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .project-detail__text {
+    margin: 40px auto 56px;
+  }
+
+  .related-projects {
+    margin: 0 24px;
+    padding: 72px 0 86px;
+  }
+
+  .related-projects__grid {
+    grid-template-columns: 1fr;
   }
 }
 
 /* Мобильная адаптация: компактная шапка и более простые сетки. */
 @media (max-width: 640px) {
+  :root {
+    --header-height: 126px;
+  }
+
+  body {
+    padding-top: var(--header-height);
+  }
+
   .site-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 14px;
+    justify-content: center;
+    min-height: 126px;
+    gap: 18px;
+    padding: 20px 24px;
   }
 
   .site-nav {
     flex-wrap: wrap;
-    gap: 12px 18px;
+    gap: 12px 24px;
+  }
+
+  .site-nav a {
+    font-size: 11px;
+    letter-spacing: 0.18em;
   }
 
   .page {
-    padding-top: 20px;
+    padding-top: 0;
+  }
+
+  .project-list {
+    --project-side-offset: 28px;
+    min-height: 190vh;
+    padding: 88px 0 88px var(--project-side-offset);
+  }
+
+  .project-backdrops {
+    margin-left: 0;
+  }
+
+  .project-card {
+    width: 100vw;
   }
 
   .placeholder-grid {
@@ -402,6 +693,19 @@ video {
   }
 
   .site-footer {
+    margin: 0 24px;
+    grid-template-columns: 1fr;
+    justify-items: start;
+    gap: 24px;
+  }
+
+  .footer-links {
+    justify-content: flex-start;
     flex-wrap: wrap;
+    gap: 14px 22px;
+  }
+
+  .footer-copy {
+    justify-self: start;
   }
 }
