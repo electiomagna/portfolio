@@ -56,7 +56,7 @@ video {
   align-items: center;
   justify-content: space-between;
   min-height: var(--header-height);
-  padding: 0 56px;
+ padding: 0 clamp(30px, calc((100vw - 1470px) / 2), 56px);
   background: #f7f7f4;
   color: #111111;
   font-family: "Hey November", Arial, Helvetica, sans-serif;
@@ -130,7 +130,7 @@ video {
   color: #0f0f0f;
 }
 
-/* Общий контейнер контента внутри страницы. */
+/* Отступ снизу от блока контакты */
 .page {
   padding: 0 0 72px;
 }
@@ -342,8 +342,8 @@ video {
 
 /* Контейнер с портретом автора */
 .about-preview__media {
-  width: 542px;
-  height: 560px;
+  width: 762px;
+  height: 780px;
 
   overflow: hidden;
   background: #4d4d4d;
