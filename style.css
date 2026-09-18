@@ -37,12 +37,8 @@ video {
   max-width: 100%;
 }
 
-/* 
-  Базовые внешние контейнеры сайта.
-  Эти селекторы задают ширину и позиционирование для шапки, основного контента и футера.
-  Сейчас им разрешено занимать всю ширину окна (`width: 100%`), поэтому сами по себе
-  они уже не ограничивают страницу по ширине.
-*/
+/* Базовые внешние контейнеры сайта. 
+Эти селекторы задают ширину и позиционирование для шапки, основного контента и футера.*/
 .site-header,
 .page,
 .site-footer {
@@ -79,7 +75,7 @@ video {
   text-transform: lowercase;
 }
 
-/* добавляем шрифт */
+/* добавляем шрифт HeyNovember */
 @font-face {
   font-family: "Hey November";
   src: url("fonts/HeyNovember.ttf") format("truetype");
@@ -106,6 +102,7 @@ video {
   color: #2f2f2f;
 }
 
+/* Лого перед именем автора */
 .brand::before,
 .footer-brand::before {
   content: "";
@@ -117,11 +114,12 @@ video {
     linear-gradient(currentColor, currentColor) 50% 66% / 100% 4px no-repeat;
 }
 
-/* Горизонтальный ряд ссылок в шапке. */
+/* About Projects Contact. */
 .site-nav {
   display: flex;
   align-items: center;
   gap: 58px;
+  padding: 0 40px;
 }
 
 .site-nav a {
@@ -132,11 +130,7 @@ video {
   color: #0f0f0f;
 }
 
-/* 
-  Общий контейнер контента внутри страницы.
-  Важно: здесь стоят боковые отступы `24px`, поэтому даже при ширине 100%
-  содержимое никогда не будет касаться самого края экрана.
-*/
+/* Общий контейнер контента внутри страницы. */
 .page {
   padding: 0 0 72px;
 }
@@ -337,11 +331,11 @@ video {
   grid-template-columns: 542px 500px;
   gap: 40px;
 
+  justify-content: center;
   align-items: center;
 
   padding-top: 180px;
   padding-bottom: 180px;
-  padding-left: 100px;
 
   box-sizing: border-box;
 }
