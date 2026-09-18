@@ -324,26 +324,21 @@ video {
 */
 .about-preview {
   width: 100%;
-  max-width: 1470px;
   margin: 48px auto 0;
 
   display: grid;
-  grid-template-columns: 542px 500px;
+  grid-template-columns: 720px 500px;
   gap: 40px;
 
-  justify-content: center;
   align-items: center;
-
-  padding-top: 180px;
-  padding-bottom: 180px;
-
+  padding: 180px max(56px, calc((100vw - 1280px) / 2));
   box-sizing: border-box;
 }
 
 /* Контейнер с портретом автора */
 .about-preview__media {
-  width: 762px;
-  height: 780px;
+  width: 640px;
+  height: 720px;
 
   overflow: hidden;
   background: #4d4d4d;
