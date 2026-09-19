@@ -742,4 +742,16 @@ video {
   .footer-copy {
     justify-self: start;
   }
+    .related-projects__grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .related-project-card:first-child {
+    order: 2;
+  }
+
+  .related-project-card:last-child {
+    order: 1;
+  }
 }
