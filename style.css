@@ -661,9 +661,13 @@ video {
     gap: 18px;
     padding: 20px 24px;
   }
+  .brand {
+    white-space: nowrap;
+  }
 
   .site-nav {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    white-space: nowrap;
     gap: 12px 24px;
   }
 
