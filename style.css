@@ -659,7 +659,7 @@ video {
     justify-content: space-between;
     min-height: 126px;
     gap: 18px;
-    padding: 20px 24px;
+    padding: 20px 50px 20px 24px;
   }
   .brand {
     white-space: nowrap;
