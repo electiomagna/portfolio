@@ -706,7 +706,7 @@ video {
   }
   .project-list {
     --project-side-offset: 28px;
-    min-height: 190vh;
+
     padding: 88px 0 88px var(--project-side-offset);
   }
 
