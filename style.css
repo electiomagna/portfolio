@@ -205,19 +205,10 @@ video {
 }
 
 .project-backdrop.is-active {
-  opacity: 0;
-}
-
-.project-list:has(> .project-card:nth-of-type(1):hover) .project-backdrop:nth-child(1),
-.project-list:has(> .project-card:nth-of-type(1):focus-visible) .project-backdrop:nth-child(1),
-.project-list:has(> .project-card:nth-of-type(2):hover) .project-backdrop:nth-child(2),
-.project-list:has(> .project-card:nth-of-type(2):focus-visible) .project-backdrop:nth-child(2),
-.project-list:has(> .project-card:nth-of-type(3):hover) .project-backdrop:nth-child(3),
-.project-list:has(> .project-card:nth-of-type(3):focus-visible) .project-backdrop:nth-child(3),
-.project-list:has(> .project-card:nth-of-type(4):hover) .project-backdrop:nth-child(4),
-.project-list:has(> .project-card:nth-of-type(4):focus-visible) .project-backdrop:nth-child(4) {
   opacity: 1;
 }
+
+
 
 .project-list > .section-label {
   position: relative;
@@ -728,14 +719,14 @@ video {
 
   .site-footer {
     margin: 0 24px;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr auto;
     justify-items: start;
     gap: 24px;
   }
 
   .footer-links {
     justify-content: flex-start;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 14px 22px;
   }
 

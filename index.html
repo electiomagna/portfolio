@@ -126,94 +126,117 @@
     <p class="footer-copy">© 2026 nikolai volkov</p>
   </footer>
 
-  <script src="projects-data.js"></script>
-  <script>
-    (() => {
-      const projects = document.querySelector("[data-projects-scroll]");
-      if (!projects) return;
+ <script src="projects-data.js"></script>
+<script>
+  (() => {
+    const projects = document.querySelector("[data-projects-scroll]");
+    if (!projects) return;
 
-      const backdropsContainer = projects.querySelector("[data-project-backdrops]");
-      const projectCards = portfolioProjects
-        .map((project) => `
-          <a class="project-card" href="project-page.html?id=${project.id}">
-            <img src="${project.preview}" alt="${project.title}">
-            <span class="project-card__meta">${project.meta}</span>
-            <span class="project-card__title">${project.title}</span>
-          </a>
-        `)
-        .join("");
+    const backdropsContainer = projects.querySelector("[data-project-backdrops]");
 
-      backdropsContainer.innerHTML = portfolioProjects
-        .map((project) => `<img class="project-backdrop" src="${project.preview}" alt="">`)
-        .join("");
-      projects.insertAdjacentHTML("beforeend", projectCards);
+    // Создаём карточки проектов автоматически из projects-data.js.
+    projects.insertAdjacentHTML(
+      "beforeend",
+      portfolioProjects
+        .map(
+          (project) => `
+            <a class="project-card" href="project-page.html?id=${project.id}">
+              <img src="${project.preview}" alt="${project.title}">
+              <span class="project-card__meta">${project.meta}</span>
+              <span class="project-card__title">${project.title}</span>
+            </a>
+          `
+        )
+        .join("")
+    );
 
-      const cards = [...projects.querySelectorAll(".project-card")];
-      const backdrops = [...projects.querySelectorAll(".project-backdrop")];
-      let activeIndex = -1;
+    // Создаём фон для каждого проекта автоматически.
+    backdropsContainer.innerHTML = portfolioProjects
+      .map(
+        (project) =>
+          `<img class="project-backdrop" src="${project.preview}" alt="">`
+      )
+      .join("");
 
-      const setActiveProject = (index) => {
-        if (index === activeIndex) return;
-        activeIndex = index;
-        cards.forEach((card, cardIndex) => {
-          card.classList.toggle("is-active", cardIndex === index);
-        });
-        backdrops.forEach((backdrop, backdropIndex) => {
-          backdrop.classList.toggle("is-active", backdropIndex === index);
-        });
-      };
+    const cards = [...projects.querySelectorAll(".project-card")];
+    const backdrops = [...projects.querySelectorAll(".project-backdrop")];
 
-const updateActiveProject = () => {
-  const sectionRect = projects.getBoundingClientRect();
-  const headerHeight = document.querySelector(".site-header")?.offsetHeight || 0;
-  const activationLine = headerHeight + (window.innerHeight - headerHeight) * 0.72;
+    let activeIndex = -1;
 
-  const isInView =
-    sectionRect.top <= activationLine &&
-    sectionRect.bottom >= headerHeight;
+    const setActiveProject = (index) => {
+      if (index === activeIndex) return;
 
-  projects.classList.toggle("is-in-view", isInView);
+      activeIndex = index;
 
-  // Если вышли из блока проектов — убираем последнюю активную картинку.
-  if (!isInView) {
-    setActiveProject(-1);
-    return;
-  }
-
-  let nearestIndex = -1;
-  let nearestDistance = Infinity;
-
-  cards.forEach((card, index) => {
-    const cardRect = card.getBoundingClientRect();
-    const cardCenter = cardRect.top + cardRect.height / 2;
-    const distance = Math.abs(cardCenter - activationLine);
-
-    if (distance < nearestDistance) {
-      nearestDistance = distance;
-      nearestIndex = index;
-    }
-  });
-
-  const firstCardRect = cards[0]?.getBoundingClientRect();
-
-  if (firstCardRect && firstCardRect.top > activationLine) {
-    nearestIndex = -1;
-  }
-
-  setActiveProject(nearestIndex);
-};
-
-      cards.forEach((card, index) => {
-        card.addEventListener("mouseenter", () => setActiveProject(index));
-        card.addEventListener("focus", () => setActiveProject(index));
-        card.addEventListener("mouseleave", updateActiveProject);
-        card.addEventListener("blur", updateActiveProject);
+      cards.forEach((card, cardIndex) => {
+        card.classList.toggle("is-active", cardIndex === index);
       });
 
-      updateActiveProject();
-      window.addEventListener("scroll", updateActiveProject, { passive: true });
-      window.addEventListener("resize", updateActiveProject);
-    })();
-  </script>
+      backdrops.forEach((backdrop, backdropIndex) => {
+        backdrop.classList.toggle("is-active", backdropIndex === index);
+      });
+    };
+
+    const updateActiveProject = () => {
+      const sectionRect = projects.getBoundingClientRect();
+      const headerHeight =
+        document.querySelector(".site-header")?.offsetHeight || 0;
+
+      const activationLine =
+        headerHeight + (window.innerHeight - headerHeight) * 0.72;
+
+      const isInView =
+        sectionRect.top <= activationLine &&
+        sectionRect.bottom >= headerHeight;
+
+      projects.classList.toggle("is-in-view", isInView);
+
+      // Если вышли из блока проектов — убираем активный проект.
+      if (!isInView) {
+        setActiveProject(-1);
+        return;
+      }
+
+      let nearestIndex = -1;
+      let nearestDistance = Infinity;
+
+      cards.forEach((card, index) => {
+        const cardRect = card.getBoundingClientRect();
+        const cardCenter = cardRect.top + cardRect.height / 2;
+        const distance = Math.abs(cardCenter - activationLine);
+
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          nearestIndex = index;
+        }
+      });
+
+      const firstCardRect = cards[0]?.getBoundingClientRect();
+
+      if (firstCardRect && firstCardRect.top > activationLine) {
+        nearestIndex = -1;
+      }
+
+      setActiveProject(nearestIndex);
+    };
+
+    // Наведение мыши и клавиатурный фокус.
+    cards.forEach((card, index) => {
+      card.addEventListener("mouseenter", () => setActiveProject(index));
+      card.addEventListener("focus", () => setActiveProject(index));
+
+      card.addEventListener("mouseleave", updateActiveProject);
+      card.addEventListener("blur", updateActiveProject);
+    });
+
+    updateActiveProject();
+
+    window.addEventListener("scroll", updateActiveProject, {
+      passive: true
+    });
+
+    window.addEventListener("resize", updateActiveProject);
+  })();
+</script>
 </body>
 </html>
