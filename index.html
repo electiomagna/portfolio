@@ -31,7 +31,7 @@
       Верхний hero-блок.
     -->
     <section class="home-hero" aria-label="Главный кадр">
-      <img src="images/0N3A1905.jpg" alt="Главный кадр портфолио">
+      <img src="images/hero.jpg" alt="Главный кадр портфолио">
     </section>
 
     <!--
@@ -45,41 +45,30 @@
 
     <!--
       Блок about.
-      Здесь слева стоит фотография автора, а справа короткое текстовое описание:
-      чем он занимается, какой у него визуальный подход и как можно с ним связаться.
     -->
     <section id="about" class="about-preview">
-      <!-- Левая колонка about-блока: портрет автора. -->
       <div class="about-preview__media">
-        <img src="images/figma-about.png" alt="Портрет Николая Волкова">
+        <img src="images/about.png" alt="Портрет Николая Волкова">
       </div>
 
-      <!-- Правая колонка about-блока: подпись, заголовок, описание и соцссылки. -->
       <div class="about-preview__copy">
-        <!-- Маленькая поясняющая подпись над текстом. -->
-        <p class="section-label">about Nikolai Volkov</p>
-
-        <!-- Основной заголовок блока about. -->
-        <h1>"Быть в моменте, чтобы показать именно те самые эмоции и переживания - это то, что требуется от оператора." </h1>
-
-        <!-- Первый абзац: коротко объясняет специализацию автора. -->
-        <p>
-          Николай - видеомейкер и фотограф, работающий с историями о природе, путешествиях о людях, горящих своим делом. 
-          А также с брендами и портретами. 
-          В его работах сочетаются суровая красота пейзажей, документальная искренность и чистый визуальный ритм. 
+        <p class="about-label">About Nikolai Volkov</p>
+        <p class="about-quote">
+          "Всегда быть в моменте - быть частью истории, но по другую сторону камеры
         </p>
-
-        <!-- Второй абзац: раскрывает авторский подход и визуальный характер работ. -->
-        <p>
-          Работая как над коммерческими, так и над личными проектами, он уделяет особое внимание естественному свету, 
-          ощущению физического присутствия и деталям, благодаря которым сцена выглядит настоящей, а не постановочной.
+        <p class="about-text">
+          Николай — видеомейкер и фотограф, работающий с историями о природе,
+          путешествиях, о людях, горящих своим делом. А также с брендами и портретами.
+          В его работах сочетаются суровая красота пейзажей, документальная искренность
+          и чистый визуальный ритм.
         </p>
+        <p class="about-text">
+          Работая как над коммерческими, так и над личными проектами, он уделяет
+          особое внимание естественному свету, ощущению физического присутствия
+          и деталям, благодаря которым сцена выглядит настоящей, а не постановочной.
+        </p>
+      </div>
 
-        <!--
-          Социальные ссылки.
-          Сейчас это компактные кнопки-заглушки, которые можно позже заменить
-          на реальные ссылки Instagram, Telegram и почты.
-        -->
         <div class="social-links" aria-label="Социальные ссылки">
           <a href="https://www.instagram.com/n.i.k.volkov?stkn=MWkydDV0azQ2YnQwbg%3D%3D&utm_source=qr" aria-label="Instagram">ig</a>
           <a href="https://t.me/nk_volkov" aria-label="Telegram">tg</a>
@@ -96,15 +85,18 @@
     -->
     <section class="placeholder-grid placeholder-grid--home" aria-label="Галерея-заглушка">
       <!-- Внутрь девяти ячеек подставлены случайно выбранные фото из папки photo. -->
+      <div class="placeholder-card"><img src="photo/1.jpg" alt="Работа 1"></div>
+      <div class="placeholder-card"><img src="photo/2.jpg" alt="Работа 2"></div>
       <div class="placeholder-card"><img src="photo/3.jpg" alt="Работа 3"></div>
+      <div class="placeholder-card"><img src="photo/4.jpg" alt="Работа 4"></div>
+      <div class="placeholder-card"><img src="photo/5.jpg" alt="Работа 5"></div>
+      <div class="placeholder-card"><img src="photo/6.jpg" alt="Работа 6"></div>
       <div class="placeholder-card"><img src="photo/7.jpg" alt="Работа 7"></div>
+      <div class="placeholder-card"><img src="photo/8.jpg" alt="Работа 8"></div>
       <div class="placeholder-card"><img src="photo/9.jpg" alt="Работа 9"></div>
+      <div class="placeholder-card"><img src="photo/10.jpg" alt="Работа 10"></div>
+      <div class="placeholder-card"><img src="photo/11.jpg" alt="Работа 11"></div>
       <div class="placeholder-card"><img src="photo/12.jpg" alt="Работа 12"></div>
-      <div class="placeholder-card"><img src="photo/14.jpg" alt="Работа 14"></div>
-      <div class="placeholder-card"><img src="photo/16.jpg" alt="Работа 16"></div>
-      <div class="placeholder-card"><img src="photo/20.jpg" alt="Работа 20"></div>
-      <div class="placeholder-card"><img src="photo/22.jpg" alt="Работа 22"></div>
-      <div class="placeholder-card"><img src="photo/24.jpg" alt="Работа 24"></div>
     </section>
   </main>
 
@@ -171,37 +163,45 @@
         });
       };
 
-      const updateActiveProject = () => {
-        const sectionRect = projects.getBoundingClientRect();
-        const headerHeight = document.querySelector(".site-header")?.offsetHeight || 0;
-        const activationLine = headerHeight + (window.innerHeight - headerHeight) * 0.72;
+const updateActiveProject = () => {
+  const sectionRect = projects.getBoundingClientRect();
+  const headerHeight = document.querySelector(".site-header")?.offsetHeight || 0;
+  const activationLine = headerHeight + (window.innerHeight - headerHeight) * 0.72;
 
-        projects.classList.toggle(
-          "is-in-view",
-          sectionRect.top <= activationLine && sectionRect.bottom >= headerHeight
-        );
+  const isInView =
+    sectionRect.top <= activationLine &&
+    sectionRect.bottom >= headerHeight;
 
-        let nearestIndex = -1;
-        let nearestDistance = Infinity;
+  projects.classList.toggle("is-in-view", isInView);
 
-        cards.forEach((card, index) => {
-          const cardRect = card.getBoundingClientRect();
-          const cardCenter = cardRect.top + cardRect.height / 2;
-          const distance = Math.abs(cardCenter - activationLine);
+  // Если вышли из блока проектов — убираем последнюю активную картинку.
+  if (!isInView) {
+    setActiveProject(-1);
+    return;
+  }
 
-          if (distance < nearestDistance) {
-            nearestDistance = distance;
-            nearestIndex = index;
-          }
-        });
+  let nearestIndex = -1;
+  let nearestDistance = Infinity;
 
-        const firstCardRect = cards[0]?.getBoundingClientRect();
-        if (firstCardRect && firstCardRect.top > activationLine) {
-          nearestIndex = -1;
-        }
+  cards.forEach((card, index) => {
+    const cardRect = card.getBoundingClientRect();
+    const cardCenter = cardRect.top + cardRect.height / 2;
+    const distance = Math.abs(cardCenter - activationLine);
 
-        setActiveProject(nearestIndex);
-      };
+    if (distance < nearestDistance) {
+      nearestDistance = distance;
+      nearestIndex = index;
+    }
+  });
+
+  const firstCardRect = cards[0]?.getBoundingClientRect();
+
+  if (firstCardRect && firstCardRect.top > activationLine) {
+    nearestIndex = -1;
+  }
+
+  setActiveProject(nearestIndex);
+};
 
       cards.forEach((card, index) => {
         card.addEventListener("mouseenter", () => setActiveProject(index));

@@ -173,7 +173,7 @@ video {
   z-index: 1;
   min-height: auto;
   margin-top: 0px; /* отступ между hero и project*/
-  padding: var(--project-text-offset) 0 152px var(--project-side-offset);
+  padding: var(--project-text-offset) 0 100px var(--project-side-offset);
   overflow: visible;
   background: #1b1b1b;
   isolation: isolate;
@@ -324,14 +324,14 @@ video {
 */
 .about-preview {
   width: 100%;
-  margin: 48px auto 0;
+  margin: 30px auto 0;
 
   display: grid;
   grid-template-columns: 720px 500px;
   gap: 40px;
 
   align-items: center;
-  padding: 180px max(56px, calc((100vw - 1280px) / 2));
+  padding: 100px max(56px, calc((100vw - 1280px) / 2));
   box-sizing: border-box;
 }
 
@@ -358,17 +358,29 @@ video {
   gap: 20px;
 }
 
-/* Заголовок */
-.about-preview__copy h1 {
-  font-size: 14px;
-  line-height: 1.12;
+/* About Author */
+.about-label {
+  /* font-family: "Hey November", Arial, sans-serif; */
+  font-size: 25px;
   font-weight: 700;
-  font-style: italic;
+  /* text-transform: uppercase; */
 }
 
-/* Текст */
-.about-preview__copy p {
+/* Цитата */
+.about-quote {
+  /* font-family: "Hey November", Arial, sans-serif; */
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.12;
+}
+
+/* Основной текст */
+.about-text {
+  /* font-family: "Hey November", Arial, sans-serif; */
   font-size: 13px;
+  font-weight: 400;
+  font-style: normal;
   line-height: 1.45;
   color: rgba(255, 255, 255, 0.8);
 }
@@ -399,7 +411,7 @@ video {
 /* Общая сетка серых плейсхолдеров. */
 .placeholder-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 2px;
 }
 
